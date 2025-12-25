@@ -36,6 +36,10 @@ svg {
 	display: none;
 }
 
+#bg-animation {
+  preserveAspectRatio: xMidYMid slice;
+}
+
 /* Contenedor Croppie */
 .croppie-container {
   position: relative;

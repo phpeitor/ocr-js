@@ -1,8 +1,6 @@
 (function() {
       const svg = document.querySelector("#bg-animation");
       svg.setAttribute("viewBox", "0 0 300 300");
-      svg.setAttribute("width", "300");
-      svg.setAttribute("height", "300");
 
       const settings = {
         animation: {
