@@ -122,11 +122,15 @@ document.getElementById('cropButton').addEventListener('click', async () => {
                 { logger: m => console.log(m) }
             );
             text = result.data.text;
+             document.getElementById('ocrVersion').textContent = 'OCR ejecutado localmente Tesseract.js';
         }
 
         if (mode === 'php') {
             const response = await runOcrPhp(blob);
             text = response.ocr_output || 'Error OCR PHP';
+            if (response.version) {
+                document.getElementById('ocrVersion').textContent = `OCR ejecutado en servidor (${response.version})`;
+            }
         }
 
         output.textContent = text;

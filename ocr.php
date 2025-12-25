@@ -24,5 +24,6 @@ $response = [
     'ocr_output' => $ocr->run()
 ];
 
-unlink($imagePath); 
+$keepForDebug = false;
+if (!$keepForDebug) unlink($imagePath);
 echo json_encode($response);
