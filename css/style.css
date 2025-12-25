@@ -36,6 +36,11 @@ svg {
 	display: none;
 }
 
+#croppieContainer {
+    min-height: 320px;
+    width: 100%;
+}
+
 #bg-animation {
   preserveAspectRatio: xMidYMid slice;
 }
@@ -95,8 +100,3 @@ svg {
 .custom-file-upload:hover {
 	background-color: #292626;
 }
-
-#cropButton {
-	display: none;
-}
-

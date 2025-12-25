@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
-    <title>OCR JS</title>
+    <title>TesseractOCR</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='75'>💠</text></svg>" />
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/croppie.min.css">
@@ -20,15 +20,28 @@
 
     <!-- Header -->
     <div class="text-center mb-10">
-      <h1 class="text-4xl font-bold tracking-tight">🔍 OCR JS</h1>
+      <h1 class="text-4xl font-bold tracking-tight">🔍TesseractOCR</h1>
       <p class="text-blue-200 mt-2">
         Detección de texto en documentos con recorte inteligente
       </p>
     </div>
 
+    
+    <div class="text-center mb-10">
+        <label class="mr-4">
+            <input type="radio" name="ocrMode" value="js" checked>
+            OCR en JS (cliente)
+        </label>
+
+        <label>
+            <input type="radio" name="ocrMode" value="php">
+            OCR en PHP (servidor)
+        </label>
+    </div>
+
     <!-- Card -->
     <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8">
-
+        
       <!-- Upload -->
       <div class="text-center mb-8">
         <input type="file" id="fileInput" accept="image/*" class="hidden">
@@ -44,7 +57,10 @@
         <!-- Croppie -->
         <div class="bg-black/30 rounded-xl p-4">
           <h3 class="font-semibold mb-3 text-blue-300">✂️ Recorte</h3>
-          <div id="croppieContainer" class="flex justify-center"></div>
+          <div id="croppieContainer"
+                class="flex justify-center items-center min-h-[320px] w-full">
+          </div>
+
         </div>
 
         <!-- Output image -->
@@ -86,7 +102,5 @@
   <script src="./js/script.js"></script>
   <script src="./js/tesseract.js"></script>
   <script src="./js/ocr.js"></script>
-
 </body>
-
 </html>
