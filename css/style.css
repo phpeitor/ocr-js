@@ -36,6 +36,46 @@ svg {
 	display: none;
 }
 
+/* Contenedor Croppie */
+.croppie-container {
+  position: relative;
+  padding-bottom: 40px; /* espacio para el slider */
+}
+
+/* Slider de zoom */
+.cr-slider {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  width: 80% !important;
+  height: 6px;
+  appearance: none;
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  border-radius: 999px;
+  outline: none;
+}
+
+/* Thumb */
+.cr-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  border: 3px solid #3b82f6;
+  cursor: pointer;
+}
+
+.cr-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  border: 3px solid #3b82f6;
+  cursor: pointer;
+}
+
 .custom-file-upload {
 	border: 1px solid #ccc;
 	display: inline-block;

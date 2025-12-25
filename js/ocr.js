@@ -43,13 +43,14 @@ document.getElementById('fileInput').addEventListener('change', function (e) {
         }
 
         const croppieContainer = document.getElementById('croppieContainer');
-        const outputImgContainer = document.getElementById('outputImgContainer');
-
         originalImageURL = e.target.result;
 
         croppie = new Croppie(croppieContainer, {
             viewport: { width: 200, height: 200, type: 'square' },
-            boundary: { width: 300, height: 300 }
+            boundary: { width: 300, height: 300 },
+            showZoomer: true,
+            enableZoom: true,
+            mouseWheelZoom: 'ctrl'
         });
 
         const image = new Image();
