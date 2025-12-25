@@ -17,7 +17,6 @@
       draw();
       animate();
 
-
       function draw() {
         for (let i = 0; i <= settings.animation.circleCount; i++) {
           let layer = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -43,7 +42,7 @@
             logo.setAttribute("y", point.y - 30); 
             logo.setAttribute("width", "100"); 
             logo.setAttribute("height", "100"); 
-            logo.setAttributeNS('http://www.w3.org/1999/xlink', 'href', './logo.png');
+            logo.setAttributeNS('http://www.w3.org/1999/xlink', 'href', './resources/logo.png');
 
             logos.push(logo);
             layer.append(logo);
@@ -62,8 +61,6 @@
 
         layers.forEach((layer, i) => {
           let direction = i % 2 ? 1 : -1;
-
-          // Setting things
 
           gsap.set([layer.group, ...layer.logos], {
             transformOrigin: "50% 50%",
@@ -110,4 +107,4 @@
           }, "<");
         });
       }
-    }());
+}());

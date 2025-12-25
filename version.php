@@ -4,7 +4,7 @@
 	
 	$version = (new TesseractOCR())->version();
     
-    $ocr_output = (new TesseractOCR('text.png'))->run();
+    $ocr_output = (new TesseractOCR('resources/text.png'))->run();
     
     $response = array(
         'version' => $version,
