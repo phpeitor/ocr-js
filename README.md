@@ -1,4 +1,4 @@
-# OCR Tesseract.js 💠📟
+# OCR Tesseract.js 💠
 [![forthebadge](http://forthebadge.com/images/badges/uses-html.svg)](https://www.linkedin.com/in/drphp/)
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
 

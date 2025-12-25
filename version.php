@@ -3,7 +3,6 @@
 	use thiagoalessio\TesseractOCR\TesseractOCR;
 	
 	$version = (new TesseractOCR())->version();
-    
     $ocr_output = (new TesseractOCR('resources/text.png'))->run();
     
     $response = array(
@@ -12,6 +11,5 @@
     );
     
     $json_response = json_encode($response);
-    
     echo $json_response;
 ?>

@@ -84,7 +84,7 @@ document.getElementById('cropButton').addEventListener('click', function () {
                 const contienePalabrasClave = verificarPalabrasClave(text);
 
                 const mensajeElement = document.createElement('div');
-                mensajeElement.textContent = contienePalabrasClave ? "El texto contiene palabras clave." : "El texto no contiene palabras clave.";
+                mensajeElement.textContent = contienePalabrasClave ? "El texto contiene palabras clave" : "El texto no contiene palabras clave";
                 mensajeElement.style.color = contienePalabrasClave ? 'blue' : 'red';
                 document.getElementById('output').appendChild(mensajeElement);
 
