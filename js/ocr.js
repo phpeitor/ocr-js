@@ -80,7 +80,15 @@ document.getElementById('cropButton').addEventListener('click', function () {
                 'eng',
                 { logger: m => console.log(m) }
             ).then(({ data: { text } }) => {
-                document.getElementById('output').textContent = text;
+                const output = document.getElementById('output');
+                output.innerHTML = '';
+
+                const pre = document.createElement('pre');
+                pre.textContent = text;
+                pre.style.whiteSpace = 'pre-wrap';
+                pre.style.color = '#e5e7eb';
+
+                output.appendChild(pre);
                 const contienePalabrasClave = verificarPalabrasClave(text);
 
                 const mensajeElement = document.createElement('div');
