@@ -95,7 +95,20 @@ document.getElementById('fileInput').addEventListener('change', (e) => {
 
 document.getElementById('cropButton').addEventListener('click', async () => {
     const output = document.getElementById('output');
-    output.textContent = 'Procesando OCR...';
+    // Mostrar animación de loading
+    output.innerHTML = '';
+    output.classList.add('loading');
+    const loadingWrapper = document.createElement('div');
+    loadingWrapper.className = 'loading-wrapper';
+    const spinner = document.createElement('span');
+    spinner.className = 'spinner';
+    spinner.innerHTML = '<i></i><i></i><i></i>';
+    const loadingText = document.createElement('div');
+    loadingText.className = 'loading-text';
+    loadingText.textContent = 'Procesando OCR...';
+    loadingWrapper.appendChild(spinner);
+    loadingWrapper.appendChild(loadingText);
+    output.appendChild(loadingWrapper);
 
     const blob = await croppie.result({
         type: 'blob',
@@ -133,6 +146,8 @@ document.getElementById('cropButton').addEventListener('click', async () => {
             }
         }
 
+        output.classList.remove('loading');
+        output.innerHTML = '';
         output.textContent = text;
 
         const ok = verificarPalabrasClave(text);

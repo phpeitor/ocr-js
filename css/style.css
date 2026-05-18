@@ -41,6 +41,46 @@ svg {
     width: 100%;
 }
 
+/* Loading animation para OCR */
+.loading-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.spinner {
+	width: 36px;
+	height: 12px;
+	display: inline-block;
+	position: relative;
+}
+
+.spinner > i {
+	position: absolute;
+	top: 0;
+	width: 8px;
+	height: 12px;
+	background: linear-gradient(180deg, #fff, #cbd5e1);
+	border-radius: 4px;
+	opacity: 0.9;
+	animation: spinner-fade 1s ease-in-out infinite;
+}
+
+.spinner > i:nth-child(1) { left: 0; animation-delay: 0s; }
+.spinner > i:nth-child(2) { left: 10px; animation-delay: 0.15s; }
+.spinner > i:nth-child(3) { left: 20px; animation-delay: 0.3s; }
+
+@keyframes spinner-fade {
+	0% { transform: translateY(0); opacity: 0.6; }
+	50% { transform: translateY(-6px); opacity: 1; }
+	100% { transform: translateY(0); opacity: 0.6; }
+}
+
+.loading-text {
+	font-weight: 600;
+	color: #fff;
+}
+
 #bg-animation {
   preserveAspectRatio: xMidYMid slice;
 }
