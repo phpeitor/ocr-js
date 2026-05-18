@@ -11,6 +11,7 @@ Aplicación de ejemplo para extraer texto desde imágenes con dos estrategias de
 El proyecto está pensado como una base práctica: interfaz simple, flujo de recorte con Croppie, preprocesamiento visual de la imagen y salida clara del texto detectado.
 
 [![Video](https://img.youtube.com/vi/MvApx7EaTu0/0.jpg)](https://www.youtube.com/watch?v=MvApx7EaTu0)
+
 [![Video Demo](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=MvApx7EaTu0)
 
 ## Resumen Ejecutivo
@@ -79,7 +80,7 @@ http://localhost:8000/index.html
 
 ### Opción 2: Apache local
 
-Si usa XAMPP, Laragon o Apache nativo, copie el proyecto en la carpeta pública y acceda a:
+Si usa Laragon o Apache nativo, copie el proyecto en la carpeta pública y acceda a:
 
 ```text
 http://localhost/ocr-js/
