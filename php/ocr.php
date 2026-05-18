@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . './vendor/autoload.php';
 use thiagoalessio\TesseractOCR\TesseractOCR;
 header('Content-Type: application/json');
 
@@ -8,7 +8,7 @@ if (!isset($_FILES['image'])) {
     exit;
 }
 
-$uploadDir = __DIR__ . '/resources/';
+$uploadDir = __DIR__ . './resources/';
 if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }

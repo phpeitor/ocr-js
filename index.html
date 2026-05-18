@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./css/tailwind.min.css">
 </head>
 <body class="min-h-screen bg-gradient-to-br from-indigo-900 via-blue-900 to-purple-900 text-white">
-  
   <svg
     id="bg-animation"
     viewBox="0 0 300 300"
@@ -17,15 +16,12 @@
   ></svg>
 
   <div class="max-w-6xl mx-auto px-6 py-10">
-
-    <!-- Header -->
     <div class="text-center mb-10">
       <h1 class="text-4xl font-bold tracking-tight">🔍TesseractOCR</h1>
       <p class="text-blue-200 mt-2">
         Detección de texto con recorte inteligente
       </p>
     </div>
-
     
     <div class="text-center mb-10">
         <label class="mr-4">
@@ -39,10 +35,8 @@
         </label>
     </div>
 
-    <!-- Card -->
     <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8">
         
-      <!-- Upload -->
       <div class="text-center mb-8">
         <input type="file" id="fileInput" accept="image/*" class="hidden">
         <label for="fileInput"
@@ -51,19 +45,14 @@
         </label>
       </div>
 
-      <!-- Workspace -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-        <!-- Croppie -->
         <div class="bg-black/30 rounded-xl p-4">
           <h3 class="font-semibold mb-3 text-blue-300">✂️ Recorte</h3>
           <div id="croppieContainer"
                 class="flex justify-center items-center min-h-[320px] w-full">
           </div>
-
         </div>
 
-        <!-- Output image -->
         <div class="bg-black/30 rounded-xl p-4 text-center">
           <h3 class="font-semibold mb-3 text-blue-300">🖼 Imagen procesada</h3>
           <div id="outputImgContainer"
@@ -76,10 +65,8 @@
             ✂️ Recortar y analizar
           </button>
         </div>
-
       </div>
 
-      <!-- OCR Result -->
       <div class="mt-8">
         <h3 class="font-semibold text-blue-300 mb-2">🧠 Texto detectado</h3>
 
@@ -94,7 +81,6 @@
     <p id="ocrVersion" class="text-center text-xs text-white/40 mt-6">
       OCR ejecutado localmente con Tesseract.js
     </p>
-
   </div>
 
   <script src="./js/gsap-latest-beta.min.js"></script>

@@ -43,7 +43,7 @@ async function runOcrPhp(blob) {
     const formData = new FormData();
     formData.append('image', blob, 'image.png');
 
-    const response = await fetch('ocr.php', {
+    const response = await fetch('./php/ocr.php', {
         method: 'POST',
         body: formData
     });
