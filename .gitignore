@@ -1,0 +1,21 @@
+# Ignorar dependencias y archivos generados
+/vendor/
+/node_modules/
+/.env
+/.vscode/
+/.idea/
+.DS_Store
+*.log
+*.sqlite
+
+# Ignorar uploads temporales y recursos generados
+/php/resources/
+/resources/files/
+
+# Composer
+composer.lock
+
+# Sistema
+Thumbs.db
+*.bak
+*.tmp
