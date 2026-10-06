@@ -5,13 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#080b16">
     <title>OCR - Pixel Hack Lab</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='75'>💠</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='75'>🔠</text></svg>">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/logo.css">
     <link rel="stylesheet" href="./css/croppie.min.css">
     <link rel="stylesheet" href="./css/tailwind.min.css">
 </head>
 <body>
   <svg id="bg-animation" viewBox="0 0 300 300" aria-hidden="true"></svg>
+
+  <div class="logo" role="button" tabindex="0" aria-label="Abrir logo en pantalla completa">
+    <div class="box">
+      <img src="./resources/logo.png" alt="Logotipo Phpeitor" width="456" height="50">
+    </div>
+  </div>
 
   <main class="app-shell">
     <header class="hero">
@@ -126,6 +133,7 @@
   <script src="./js/gsap-latest-beta.min.js"></script>
   <script src="./js/croppie.min.js"></script>
   <script src="./js/script.js"></script>
+  <script src="./js/logo.js"></script>
   <script src="./js/tesseract.js"></script>
   <script src="./js/ocr.js"></script>
 </body>

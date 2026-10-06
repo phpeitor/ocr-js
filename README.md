@@ -42,6 +42,54 @@ El flujo de OCR puede ejecutarse de dos formas:
    binario Tesseract del sistema.
 6. La imagen enviada se almacena solo temporalmente y se elimina al terminar.
 
+### Diagrama de arquitectura y flujo
+
+```mermaid
+flowchart TD
+    U[Usuario] --> UI[index.html]
+    UI --> C[Croppie: recorte y zoom]
+    C --> K[Palabras clave configurables]
+    K --> M{Motor OCR}
+
+    M -->|JS LOCAL| J[Tesseract.js en navegador]
+    J --> R[Texto reconocido]
+
+    M -->|PHP SERVER| F[POST multipart image]
+    F --> E[php/ocr.php]
+    E --> T[Archivo temporal del sistema]
+    T --> O[Tesseract nativo]
+    O --> E
+    E --> X[Respuesta JSON]
+    X --> R
+
+    R --> V[Normalización y búsqueda de palabras clave]
+    V --> S[Resultado y estado visual]
+
+    subgraph Cliente
+        UI
+        C
+        K
+        M
+        J
+        R
+        V
+        S
+    end
+
+    subgraph Servidor
+        F
+        E
+        T
+        O
+        X
+    end
+```
+
+El modo **JS LOCAL** no abandona el navegador. El modo **PHP SERVER** envía
+únicamente el recorte al endpoint, que usa un archivo temporal durante el
+procesamiento y lo elimina al finalizar. En ambos casos, la búsqueda de
+palabras clave se realiza en la interfaz después de obtener el texto OCR.
+
 Componentes:
 
 | Archivo o directorio | Responsabilidad |
