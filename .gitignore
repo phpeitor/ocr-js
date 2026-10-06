@@ -12,9 +12,6 @@
 /php/resources/
 /resources/files/
 
-# Composer
-composer.lock
-
 # Sistema
 Thumbs.db
 *.bak
