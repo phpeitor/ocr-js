@@ -8,8 +8,7 @@
 *.log
 *.sqlite
 
-# Ignorar uploads temporales y recursos generados
-/php/resources/
+# Ignorar recursos generados
 /resources/files/
 
 # Sistema

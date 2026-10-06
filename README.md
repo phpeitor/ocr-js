@@ -112,16 +112,17 @@ Directorios clave:
 - `css/`: estilos y animaciones visuales.
 - `js/`: scripts de interfaz y OCR.
 - `php/`: lógica del endpoint backend.
-- `php/resources/`: archivos temporales subidos por el backend.
 - `resources/files/`: archivos generados o persistidos por flujos del cliente.
 - `vendor/`: dependencias administradas con Composer.
 
 ## Configuración y operación
 
 - El endpoint PHP espera una imagen en el campo `image`.
-- El backend guarda temporalmente el archivo antes de invocar Tesseract.
+- El backend guarda la imagen únicamente en el directorio temporal del sistema
+  durante la ejecución de Tesseract y la elimina al finalizar.
 - El repositorio incluye un `.gitignore` para evitar versionar dependencias y archivos generados.
-- Si el OCR falla en servidor, verifique permisos de escritura en `php/resources/` y que el binario `tesseract` esté disponible en `PATH`.
+- Si el OCR falla en servidor, verifique permisos del directorio temporal y que
+  el binario `tesseract` esté disponible en `PATH`.
 
 ### Configuración de Tesseract en Windows
 
@@ -155,7 +156,8 @@ Debe estar disponible el idioma `spa` para el reconocimiento en español.
 ## Troubleshooting
 
 - Error de autoload en PHP: ejecute `composer install` en la raíz del proyecto.
-- Error al mover archivos: revise permisos de escritura en `php/resources/`.
+- Error al mover archivos: revise los permisos del directorio temporal del
+  sistema y la configuración de subida de PHP.
 - Sin texto detectado: pruebe con un recorte más preciso o una imagen de mayor resolución.
 - Resultado inconsistente: compare ambos modos, JS y PHP, para identificar si el problema está en el navegador, en el backend o en la calidad de la imagen.
 

@@ -40,6 +40,6 @@ REST, framework PHP, base de datos o sistema de autenticación que no exista.
 - Ejecutar `php -l php/ocr.php` cuando se modifique PHP.
 - Probar manualmente ambos modos de OCR con imágenes válidas, inválidas y de
   tamaño excesivo cuando se cambie el flujo de carga.
-- Revisar consola del navegador y permisos de `php/resources/` en pruebas del
-  modo servidor.
+- Revisar consola del navegador y permisos del directorio temporal del sistema
+  en pruebas del modo servidor.
 - Actualizar `README.md` si cambian instalación, requisitos, rutas o uso.

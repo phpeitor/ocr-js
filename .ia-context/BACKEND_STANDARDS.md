@@ -7,8 +7,8 @@ hay API REST genérica, base de datos, autenticación ni framework.
 ## Flujo existente
 
 - El frontend envía una solicitud `POST` multipart al campo `image`.
-- El endpoint guarda temporalmente la imagen en `php/resources/`, crea una
-  instancia de `thiagoalessio/tesseract_ocr\TesseractOCR`, ejecuta los idiomas
+- El endpoint guarda temporalmente la imagen en el directorio temporal del
+  sistema, crea una instancia de `thiagoalessio/tesseract_ocr\TesseractOCR`, ejecuta los idiomas
   `spa` y `eng`, y devuelve JSON.
 - `vendor/autoload.php` se obtiene desde la raíz. Si no existe, la instalación
   requerida es `composer install`.
@@ -25,8 +25,8 @@ hay API REST genérica, base de datos, autenticación ni framework.
 - Generar el nombre temporal con un identificador impredecible y usar una
   ruta construida por el servidor; nunca procesar una ruta proporcionada por
   el usuario.
-- Crear el directorio temporal con permisos restringidos y eliminar el archivo
-  mediante `finally`, incluso si Tesseract falla.
+- Usar el directorio temporal del sistema y eliminar el archivo mediante
+  `finally`, incluso si Tesseract falla.
 
 ## Respuestas y errores
 

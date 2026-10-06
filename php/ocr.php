@@ -43,13 +43,16 @@ if (!isset($_FILES['image'])) {
     exit;
 }
 
-$uploadDir = __DIR__ . '/resources/';
-if (!is_dir($uploadDir)) {
-    mkdir($uploadDir, 0777, true);
+$imagePath = tempnam(sys_get_temp_dir(), 'ocr_');
+if ($imagePath === false) {
+    http_response_code(500);
+    echo json_encode(['error' => 'No se pudo crear un archivo temporal para OCR']);
+    exit;
 }
 
-$imagePath = $uploadDir . uniqid() . '.png';
 if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
+    unlink($imagePath);
+    http_response_code(500);
     echo json_encode(['error' => 'No se pudo mover el archivo subido. Revisar permisos de carpeta.']);
     exit;
 }
