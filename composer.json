@@ -1,0 +1,9 @@
+{
+    "name": "phpeitor/ocr-js",
+    "description": "Demo OCR con Tesseract.js y Tesseract para PHP",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "thiagoalessio/tesseract_ocr": "^2.13"
+    }
+}
