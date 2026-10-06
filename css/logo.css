@@ -1,0 +1,182 @@
+/*
+ * Reusable logo component.
+ * Required markup:
+ * <div class="logo" role="button" tabindex="0" aria-label="Abrir logo">
+ *   <div class="box"><img src="logo.png" alt="Logo"></div>
+ * </div>
+ */
+.logo {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 100;
+  width: 110px;
+  cursor: pointer;
+  transform: rotate(-6deg);
+  filter: drop-shadow(0 0 8px rgba(249, 143, 22, .65));
+}
+
+.logo::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  z-index: 0;
+  border: 1px dashed rgba(227, 186, 232, .6);
+  border-radius: 6px;
+  background: rgba(53, 51, 51, .12);
+}
+
+.logo .box {
+  position: relative;
+  z-index: 1;
+  padding: 4px 6px;
+  border: 1px solid rgba(227, 186, 232, .5);
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, .5), 0 0 14px rgba(180, 100, 210, .35);
+  transition: transform .4s;
+}
+
+.logo .box img {
+  display: block;
+  width: 100%;
+}
+
+.logo .box:hover {
+  transform: translate(3px, 3px) scale(1.02);
+}
+
+.logo.haunt {
+  animation: logo-float 5s ease-in-out infinite;
+}
+
+.logo.haunt .box img {
+  filter: drop-shadow(0 0 .6rem #f80) drop-shadow(0 0 1.2rem #f80);
+  animation: logo-flicker 3.2s steps(60) infinite;
+}
+
+.logo.brain .box::after {
+  content: attr(data-logo-reaction);
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  font-size: 34px;
+  filter: drop-shadow(0 0 6px rgba(255, 0, 128, .8));
+  animation: logo-brain-beat 950ms ease-in-out infinite;
+}
+
+.logo-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  background: rgba(6, 12, 30, .75);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .28s ease;
+}
+
+.logo-lightbox--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.logo-lightbox__img {
+  display: block;
+  width: min(92vw, 1100px);
+  height: auto;
+  max-width: 92vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .6), 0 0 26px rgba(255, 179, 107, .35);
+  transform: translate(var(--lbx), var(--lby)) scale(.28) rotate(-12deg);
+  transition: transform .42s cubic-bezier(.19, 1, .22, 1);
+}
+
+.logo-lightbox--open .logo-lightbox__img {
+  transform: translate(0, 0) scale(1) rotate(0deg);
+}
+
+.logo-lightbox--closing .logo-lightbox__img {
+  transform: translate(var(--lbx), var(--lby)) scale(.28) rotate(-12deg);
+}
+
+.logo-lightbox__close {
+  position: fixed;
+  top: 18px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .16);
+  color: #fff;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.logo-lightbox__close:hover {
+  background: rgba(255, 255, 255, .3);
+}
+
+.logo-spark {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  font-size: clamp(14px, 1.8vw, 26px);
+  opacity: 0;
+  text-shadow: 0 0 6px rgba(255, 140, 0, .9), 0 0 14px rgba(255, 90, 0, .5);
+  transform: translate(-50%, -50%) scale(.6);
+  animation: logo-spark-pop 1s ease-out forwards;
+}
+
+@keyframes logo-float {
+  0%, 100% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-6px) rotate(-10deg); }
+}
+
+@keyframes logo-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: .6; }
+}
+
+@keyframes logo-spark-pop {
+  0% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(.4); }
+  10%, 70% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--sx) + var(--dx)), calc(var(--sy) + var(--dy))) scale(.9);
+  }
+}
+
+@keyframes logo-brain-beat {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(1.18); }
+}
+
+@media (max-width: 480px) {
+  .logo { top: 15px; left: 15px; width: 95px; }
+  .logo .box { padding: 2px 3px; border-radius: 3px; }
+  .logo::before { inset: -2px; }
+  .logo-lightbox__img { width: min(90vw, 360px); }
+  .logo-lightbox__close { top: 10px; right: 12px; width: 36px; height: 36px; font-size: 26px; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .logo { top: 10px; left: 10px; width: 105px; }
+  .logo .box { padding: 3px 5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo.haunt,
+  .logo.haunt .box img,
+  .logo.brain .box::after,
+  .logo-spark {
+    animation: none;
+  }
+}

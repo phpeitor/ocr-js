@@ -9,7 +9,24 @@ if (!file_exists($autoloadPath)) {
 
 require_once $autoloadPath;
 use thiagoalessio\TesseractOCR\TesseractOCR;
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
+
+function resolveTesseractExecutable(): string
+{
+    $configuredPath = getenv('TESSERACT_PATH');
+    if ($configuredPath && is_file($configuredPath)) {
+        return $configuredPath;
+    }
+
+    if (PHP_OS_FAMILY === 'Windows') {
+        $windowsPath = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe';
+        if (is_file($windowsPath)) {
+            return $windowsPath;
+        }
+    }
+
+    return 'tesseract';
+}
 
 if (!isset($_FILES['image'])) {
     echo json_encode(['error' => 'No image uploaded']);
@@ -29,6 +46,7 @@ if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
 
 try {
     $ocr = (new TesseractOCR($imagePath))
+              ->executable(resolveTesseractExecutable())
               ->lang('spa', 'eng');
 
     $response = [
@@ -36,8 +54,12 @@ try {
         'ocr_output' => $ocr->run()
     ];
 
-    //unlink($imagePath);
     echo json_encode($response);
 } catch (Exception $e) {
-    echo json_encode(['error' => 'Error procesando OCR', 'message' => $e->getMessage()]);
+    http_response_code(500);
+    echo json_encode(['error' => 'No se pudo procesar la imagen con OCR']);
+} finally {
+    if (is_file($imagePath)) {
+        unlink($imagePath);
+    }
 }

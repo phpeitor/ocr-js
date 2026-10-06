@@ -3,16 +3,16 @@
 [![forthebadge](https://forthebadge.com/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
 
+[![Video](https://img.youtube.com/vi/MvApx7EaTu0/0.jpg)](https://www.youtube.com/watch?v=MvApx7EaTu0)
+
+[![Video Demo](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=MvApx7EaTu0)
+
 Aplicación de ejemplo para extraer texto desde imágenes con dos estrategias de OCR:
 
 - OCR en el navegador con Tesseract.js.
 - OCR en servidor con PHP y la librería thiagoalessio/tesseract_ocr.
 
 El proyecto está pensado como una base práctica: interfaz simple, flujo de recorte con Croppie, preprocesamiento visual de la imagen y salida clara del texto detectado.
-
-[![Video](https://img.youtube.com/vi/MvApx7EaTu0/0.jpg)](https://www.youtube.com/watch?v=MvApx7EaTu0)
-
-[![Video Demo](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=MvApx7EaTu0)
 
 ## Resumen Ejecutivo
 
@@ -122,6 +122,26 @@ Directorios clave:
 - El backend guarda temporalmente el archivo antes de invocar Tesseract.
 - El repositorio incluye un `.gitignore` para evitar versionar dependencias y archivos generados.
 - Si el OCR falla en servidor, verifique permisos de escritura en `php/resources/` y que el binario `tesseract` esté disponible en `PATH`.
+
+### Configuración de Tesseract en Windows
+
+El modo PHP requiere que Tesseract OCR esté instalado en Windows. La
+aplicación detecta automáticamente la instalación estándar:
+
+```text
+C:\Program Files\Tesseract-OCR\tesseract.exe
+```
+
+Si Tesseract está instalado en otra ubicación, configure la variable de
+entorno `TESSERACT_PATH` con la ruta completa al ejecutable y reinicie Apache.
+También puede verificar la instalación desde PowerShell:
+
+```powershell
+tesseract --version
+tesseract --list-langs
+```
+
+Debe estar disponible el idioma `spa` para el reconocimiento en español.
 
 ## Consideraciones técnicas
 

@@ -1,87 +1,116 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>TesseractOCR</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='75'>💠</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b16">
+    <title>OCR - Pixel Hack Lab</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='75'>💠</text></svg>">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/croppie.min.css">
     <link rel="stylesheet" href="./css/tailwind.min.css">
 </head>
-<body class="min-h-screen bg-gradient-to-br from-indigo-900 via-blue-900 to-purple-900 text-white">
-  <svg
-    id="bg-animation"
-    viewBox="0 0 300 300"
-    class="fixed inset-0 w-full h-full -z-10 pointer-events-none"
-  ></svg>
+<body>
+  <svg id="bg-animation" viewBox="0 0 300 300" aria-hidden="true"></svg>
 
-  <div class="max-w-6xl mx-auto px-6 py-10">
-    <div class="text-center mb-10">
-      <h1 class="text-4xl font-bold tracking-tight">🔍TesseractOCR</h1>
-      <p class="text-blue-200 mt-2">
-        Detección de texto con recorte inteligente
-      </p>
-    </div>
-    
-    <div class="text-center mb-10">
-        <label class="mr-4">
-            <input type="radio" name="ocrMode" value="js" checked>
-            OCR JS (cliente)
+  <main class="app-shell">
+    <header class="hero">
+      <div class="brand-mark" aria-hidden="true">⌁_</div>
+      <div>
+        <p class="eyebrow">PIXEL HACK LAB <span>•</span> OCR SYSTEM</p>
+        <h1>Extrae el texto.<br><span>Reescribe la señal.</span></h1>
+        <p class="hero-copy">Recorta una imagen y convierte sus píxeles en texto legible.</p>
+      </div>
+      <div class="system-status"><i></i> SISTEMA ONLINE</div>
+    </header>
+
+    <section class="control-bar" aria-label="Configuración de OCR">
+      <div class="control-title">
+        <span class="pixel-icon">01</span>
+        <div>
+          <span class="section-kicker">MODO DE PROCESAMIENTO</span>
+          <strong>Elige tu motor OCR</strong>
+        </div>
+      </div>
+      <div class="mode-switch">
+        <label class="mode-option">
+          <input type="radio" name="ocrMode" value="js" checked>
+          <span><b>JS</b> LOCAL</span>
+          <small>en tu navegador</small>
         </label>
-
-        <label>
-            <input type="radio" name="ocrMode" value="php">
-            OCR PHP (servidor)
-        </label>
-    </div>
-
-    <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8">
-        
-      <div class="text-center mb-8">
-        <input type="file" id="fileInput" accept="image/*" class="hidden">
-        <label for="fileInput"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-xl cursor-pointer font-semibold transition">
-          📤 Seleccionar imagen
+        <label class="mode-option">
+          <input type="radio" name="ocrMode" value="php">
+          <span><b>PHP</b> SERVER</span>
+          <small>procesamiento remoto</small>
         </label>
       </div>
+    </section>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-black/30 rounded-xl p-4">
-          <h3 class="font-semibold mb-3 text-blue-300">✂️ Recorte</h3>
-          <div id="croppieContainer"
-                class="flex justify-center items-center min-h-[320px] w-full">
-          </div>
+    <section class="workspace" aria-label="Área de trabajo OCR">
+      <div class="workspace-heading">
+        <div>
+          <span class="section-kicker">WORKSPACE / 001</span>
+          <h2>Zona de extracción</h2>
         </div>
+        <span class="format-tag">PNG / JPG / WEBP</span>
+      </div>
 
-        <div class="bg-black/30 rounded-xl p-4 text-center">
-          <h3 class="font-semibold mb-3 text-blue-300">🖼 Imagen procesada</h3>
-          <div id="outputImgContainer"
-            class="min-h-[220px] flex items-center justify-center border border-dashed border-white/30 rounded-lg">
-            <span class="text-white/50 text-sm">Sin imagen</span>
+      <div class="workspace-grid">
+        <section class="panel crop-panel">
+          <div class="panel-heading">
+            <div class="step-number">01</div>
+            <div>
+              <h3>Carga y recorte</h3>
+              <p>Ajusta el área que quieres analizar</p>
+            </div>
           </div>
+          <input type="file" id="fileInput" accept="image/*">
+          <label for="fileInput" class="upload-trigger">
+            <span class="upload-glyph">↑</span>
+            <span><strong>Seleccionar imagen</strong><small>Arrastra el archivo o pulsa para explorar</small></span>
+          </label>
+          <div id="croppieContainer" class="crop-stage">
+            <span class="empty-state">ESPERANDO INPUT<span>_</span></span>
+          </div>
+        </section>
 
-          <button id="cropButton"
-            class="hidden mt-4 w-full px-4 py-2 bg-emerald-500 hover:bg-emerald-600 rounded-lg font-semibold transition">
-            ✂️ Recortar y analizar
+        <section class="panel output-panel">
+          <div class="panel-heading">
+            <div class="step-number">02</div>
+            <div>
+              <h3>Vista procesada</h3>
+              <p>Previsualización en escala de grises</p>
+            </div>
+          </div>
+          <div id="outputImgContainer" class="preview-stage">
+            <span class="empty-state">SIN SEÑAL<span>_</span></span>
+          </div>
+          <button id="cropButton" class="analyze-button hidden">
+            <span>▶</span> RECORTAR Y ANALIZAR
           </button>
-        </div>
+        </section>
       </div>
+    </section>
 
-      <div class="mt-8">
-        <h3 class="font-semibold text-blue-300 mb-2">🧠 Texto detectado</h3>
-
-        <div id="output"
-          class="bg-black rounded-xl p-4 text-sm max-h-48 overflow-y-auto whitespace-pre-wrap border border-white/10">
-          Esperando imagen...
+    <section class="result-panel" aria-label="Resultado OCR">
+      <div class="result-heading">
+        <div class="panel-heading">
+          <div class="step-number">03</div>
+          <div>
+            <h3>Salida detectada</h3>
+            <p>Texto reconocido por el motor seleccionado</p>
+          </div>
         </div>
+        <span class="live-tag"><i></i> LIVE OUTPUT</span>
       </div>
+      <div id="output" class="terminal-output">Esperando imagen...</div>
+    </section>
 
-    </div>
-
-    <p id="ocrVersion" class="text-center text-xs text-white/40 mt-6">
-      OCR ejecutado localmente con Tesseract.js
-    </p>
-  </div>
+    <footer>
+      <span id="ocrVersion">OCR ejecutado localmente con Tesseract.js</span>
+      <span>BUILD 2.0 <b>•</b> PIXEL HACK LAB</span>
+    </footer>
+  </main>
 
   <script src="./js/gsap-latest-beta.min.js"></script>
   <script src="./js/croppie.min.js"></script>
