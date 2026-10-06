@@ -30,9 +30,25 @@ function convertToBlackAndWhite(image) {
     return img;
 }
 
-function verificarPalabrasClave(texto) {
-    const palabrasClave = ['DNI', 'DOCUMENTO', 'IDENTIDAD', 'NACIONAL'];
-    return palabrasClave.some(p => texto.toUpperCase().includes(p));
+function getKeywords() {
+    return document.getElementById('keywordInput').value
+        .split(',')
+        .map(keyword => keyword.trim())
+        .filter(Boolean);
+}
+
+function normalizeText(texto) {
+    return texto
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toUpperCase();
+}
+
+function verificarPalabrasClave(texto, palabrasClave) {
+    const textoNormalizado = normalizeText(texto);
+    return palabrasClave.filter(keyword =>
+        textoNormalizado.includes(normalizeText(keyword))
+    );
 }
 
 function getOcrMode() {
@@ -150,15 +166,22 @@ document.getElementById('cropButton').addEventListener('click', async () => {
         output.innerHTML = '';
         output.textContent = text;
 
-        const ok = verificarPalabrasClave(text);
+        const palabrasClave = getKeywords();
+        const palabrasEncontradas = verificarPalabrasClave(text, palabrasClave);
         const badge = document.createElement('div');
-        badge.textContent = ok
-            ? '✔ Palabras clave detectadas'
-            : '✖ No se detectaron palabras clave';
+        if (palabrasClave.length === 0) {
+            badge.textContent = '⚠ Define al menos una palabra clave para validar el resultado';
+        } else if (palabrasEncontradas.length > 0) {
+            badge.textContent = `✔ Detectadas: ${palabrasEncontradas.join(', ')}`;
+        } else {
+            badge.textContent = '✖ No se detectaron las palabras clave indicadas';
+        }
 
-        badge.className = ok
-            ? 'mt-3 bg-emerald-500 px-3 py-1 rounded-full text-xs'
-            : 'mt-3 bg-red-500 px-3 py-1 rounded-full text-xs';
+        badge.className = palabrasClave.length === 0
+            ? 'mt-3 bg-amber-500 px-3 py-1 rounded-full text-xs'
+            : palabrasEncontradas.length > 0
+                ? 'mt-3 bg-emerald-500 px-3 py-1 rounded-full text-xs'
+                : 'mt-3 bg-red-500 px-3 py-1 rounded-full text-xs';
 
         output.appendChild(badge);
     };

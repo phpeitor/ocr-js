@@ -93,8 +93,9 @@ http://localhost/ocr-js/
 3. Elija el modo de OCR:
 	- OCR en JS para ejecutar en el navegador.
 	- OCR en PHP para delegar el procesamiento al servidor.
-4. Pulse Recortar y analizar.
-5. Revise el texto detectado y el indicador de palabras clave.
+4. Escriba las palabras clave que desea buscar, separadas por comas.
+5. Pulse Recortar y analizar.
+6. Revise el texto detectado y las palabras clave encontradas.
 
 ## Estructura del proyecto
 
