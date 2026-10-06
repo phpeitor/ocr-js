@@ -12,7 +12,8 @@ Aplicación de ejemplo para extraer texto desde imágenes con dos estrategias de
 - OCR en el navegador con Tesseract.js.
 - OCR en servidor con PHP y `thiagoalessio/tesseract_ocr`.
 
-Incluye recorte con Croppie, preprocesamiento en escala de grises, búsqueda de
+Incluye recorte con Croppie (con zoom de salida para encuadrar imágenes
+pequeñas), preprocesamiento en escala de grises, búsqueda de
 palabras clave configurables y una interfaz responsive con estilo Pixel Hack.
 
 ## Índice

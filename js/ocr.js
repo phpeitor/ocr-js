@@ -90,6 +90,9 @@ document.getElementById('fileInput').addEventListener('change', (e) => {
             boundary: { width: 300, height: 300 },
             showZoomer: true,
             enableZoom: true,
+            minZoom: 0.1,
+            maxZoom: 4,
+            enforceBoundary: false,
             mouseWheelZoom: 'ctrl'
         });
 
