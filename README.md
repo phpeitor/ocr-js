@@ -134,6 +134,8 @@ C:\Program Files\Tesseract-OCR\tesseract.exe
 
 Si Tesseract está instalado en otra ubicación, configure la variable de
 entorno `TESSERACT_PATH` con la ruta completa al ejecutable y reinicie Apache.
+La configuración local se carga desde `.env`; use `.env.example` como plantilla
+y no versiona `.env`.
 También puede verificar la instalación desde PowerShell:
 
 ```powershell

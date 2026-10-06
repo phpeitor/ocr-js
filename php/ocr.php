@@ -8,12 +8,21 @@ if (!file_exists($autoloadPath)) {
 }
 
 require_once $autoloadPath;
+
+use Dotenv\Dotenv;
 use thiagoalessio\TesseractOCR\TesseractOCR;
+
+$projectRoot = dirname(__DIR__);
+$envFile = $projectRoot . '/.env';
+if (is_file($envFile)) {
+    Dotenv::createImmutable($projectRoot)->safeLoad();
+}
+
 header('Content-Type: application/json; charset=utf-8');
 
 function resolveTesseractExecutable(): string
 {
-    $configuredPath = getenv('TESSERACT_PATH');
+    $configuredPath = $_ENV['TESSERACT_PATH'] ?? getenv('TESSERACT_PATH');
     if ($configuredPath && is_file($configuredPath)) {
         return $configuredPath;
     }
@@ -26,6 +35,14 @@ function resolveTesseractExecutable(): string
     }
 
     return 'tesseract';
+}
+
+function configuredOcrLanguages(): array
+{
+    $value = $_ENV['OCR_LANGUAGES'] ?? getenv('OCR_LANGUAGES') ?: 'spa,eng';
+    $languages = array_filter(array_map('trim', explode(',', $value)));
+
+    return $languages ?: ['spa', 'eng'];
 }
 
 if (!isset($_FILES['image'])) {
@@ -47,7 +64,7 @@ if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
 try {
     $ocr = (new TesseractOCR($imagePath))
               ->executable(resolveTesseractExecutable())
-              ->lang('spa', 'eng');
+              ->lang(...configuredOcrLanguages());
 
     $response = [
         'version' => $ocr->version(),
