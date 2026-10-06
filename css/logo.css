@@ -51,7 +51,7 @@
 }
 
 .logo.haunt .box img {
-  filter: drop-shadow(0 0 .6rem #f80) drop-shadow(0 0 1.2rem #f80);
+  filter: drop-shadow(0 0 .6rem rgb(53, 201, 97)) drop-shadow(0 0 1.2rem rgb(39, 147, 46));
   animation: logo-flicker 3.2s steps(60) infinite;
 }
 

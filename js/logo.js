@@ -3,8 +3,8 @@
 
   // Personaliza estos valores para reutilizar el componente en otra landing.
   const LOGO_CONFIG = {
-    sparkEmojis: ['✨', '🎁', '🎉', '🎂'],
-    reactionEmoji: '🥳',
+    sparkEmojis: ['🔎', '🤖', '⛶', '🛠️'],
+    reactionEmoji: '🧐',
     reactionClass: 'brain'
   };
 
