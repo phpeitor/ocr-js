@@ -27,13 +27,6 @@ function resolveTesseractExecutable(): string
         return $configuredPath;
     }
 
-    if (PHP_OS_FAMILY === 'Windows') {
-        $windowsPath = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe';
-        if (is_file($windowsPath)) {
-            return $windowsPath;
-        }
-    }
-
     return 'tesseract';
 }
 
